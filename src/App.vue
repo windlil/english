@@ -11,5 +11,13 @@ import Layout from '@/components/layout/index.vue'
 </template>
 
 <style scoped lang="less">
-
+.app {
+  position: relative;
+  width: 90%;
+  height: 800px;
+  border-radius: 14px;
+  border: 1px solid var(--border-color-app);
+  box-shadow: 0 2px 15px var(--box-shadow-color-app);
+  background-color: var(--background-color-app);
+}
 </style>

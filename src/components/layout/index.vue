@@ -1,16 +1,26 @@
 <script setup lang="ts">
-import Toggle from '@/components/toggle/index.vue'
+import Sider from './sider.vue'
+import TopBar from './top-bar.vue'
 </script>
 
 <template>
   <div class="layout">
-    <div class="sider">
-      <Toggle />
+    <Sider />
+    <div class="container">
+      <TopBar />
+      <slot />
     </div>
-    <slot />
   </div>
 </template>
 
 <style scoped lang="less">
+.layout {
+  display: flex;
+  width: 100%;
+  height: 100%;
 
+  .container {
+    flex: 1;
+  }
+}
 </style>

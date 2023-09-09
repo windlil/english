@@ -3,8 +3,8 @@
 </script>
 
 <template>
-  <div class="home">
-    Home
+  <div>
+    record
   </div>
 </template>
 

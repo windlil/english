@@ -29,7 +29,7 @@ onMounted(() => {
 
 <style scoped lang="less">
 .toggleIcon {
-  font-size: 35px;
+  font-size: 25px;
   color: var(--color-icon-toggle);
   cursor: pointer;
 }
