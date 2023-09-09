@@ -2,6 +2,7 @@
 import { reactive, ref, watchEffect } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { Icon } from '@iconify/vue'
+import GitHubIcon from '@/components/github-icon/index.vue'
 
 interface SiderBarItem {
   path: string
@@ -9,6 +10,7 @@ interface SiderBarItem {
   icon?: any
 }
 
+const siderRef = ref()
 const router = useRouter()
 const route = useRoute()
 const currentActiveIndex = ref()
@@ -34,17 +36,30 @@ const siderBarItem = reactive<SiderBarItem[]>([
   {
     path: '/record',
     name: 'Record',
-    icon: 'icon-park-solid:save',
+    icon: 'icon-park-outline:log',
+  },
+  {
+    path: '/',
+    name: 'Chanllenge',
+    icon: 'material-symbols:trophy-outline',
   },
 ])
 
 function toPath(path: string) {
   router.push(path)
 }
+
+function fold() {
+  siderRef.value.style.display = 'none'
+}
+
+defineExpose({
+  fold,
+})
 </script>
 
 <template>
-  <div class="sider">
+  <div ref="siderRef" class="sider">
     <div class="sider-bar">
       <template v-for="(item, index) in siderBarItem" :key="item.path">
         <div
@@ -61,11 +76,13 @@ function toPath(path: string) {
         </div>
       </template>
     </div>
+    <GitHubIcon class="github-icon" />
   </div>
 </template>
 
 <style scoped lang="less">
 .sider {
+  position: relative;
   box-sizing: border-box;
   position: relative;
   width: 250px;
@@ -101,6 +118,12 @@ function toPath(path: string) {
       background-color: var(--background-color-sider-bar-item);
       }
     }
+  }
+
+  .github-icon {
+    position: absolute;
+    left: 15px;
+    bottom: 5px;
   }
 }
 
