@@ -5,8 +5,12 @@ import TopBar from './top-bar.vue'
 
 const siderRef = ref<InstanceType<typeof Sider>>()
 
-function fold() {
-  siderRef.value?.fold()
+function foldOrOpen(isFold: boolean) {
+  if (isFold) {
+    siderRef.value?.fold()
+  } else {
+    siderRef.value?.open()
+  }
 }
 </script>
 
@@ -14,7 +18,7 @@ function fold() {
   <div class="layout">
     <Sider ref="siderRef" class="sider" />
     <div class="container">
-      <TopBar @fold-emit="fold" />
+      <TopBar @fold-emit="foldOrOpen" />
       <div class="main">
         <slot />
       </div>

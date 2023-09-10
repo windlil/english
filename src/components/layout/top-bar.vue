@@ -1,22 +1,32 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+import { useRoute } from 'vue-router'
 import { Icon } from '@iconify/vue'
 import Setting from '../setting-icon/index.vue'
 import Toggle from '../toggle/index.vue'
 
 const emits = defineEmits(['foldEmit'])
+const route = useRoute()
+const isFold = ref(false)
 
-function fold() {
-  emits('foldEmit')
+function foldOrOpen() {
+  emits('foldEmit', !isFold.value)
+  isFold.value = !isFold.value
 }
 </script>
 
 <template>
   <div class="top-bar">
-    <div class="fold" @click="fold">
-      <Icon class="icon" icon="ant-design:menu-fold-outlined" />
+    <div class="left">
+      <div v-if="route.path === '/'" class="fold" @click="foldOrOpen">
+        <Icon v-if="!isFold" class="icon" icon="ant-design:menu-fold-outlined" />
+        <Icon v-else class="icon" icon="ant-design:menu-unfold-outlined" />
+      </div>
     </div>
-    <Setting class="setting" />
-    <Toggle />
+    <div class="right">
+      <Setting class="setting" />
+      <Toggle />
+    </div>
   </div>
 </template>
 
@@ -25,24 +35,33 @@ function fold() {
   position: relative;
   box-sizing: border-box;
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   height: 50px;
   padding: 0 8px;
 
-  .fold {
-    position: absolute;
-    left: 5px;
-    cursor: pointer;
+  .left {
+    display: flex;
+    .fold {
+      cursor: pointer;
 
-    .icon {
-      font-size: 20px;
+      .icon {
+        font-size: 20px;
+        color: var(--color-icon-toggle);
+      }
+    }
+
+    .selection {
+      margin-left: 20px;
     }
   }
 
-  .setting {
-    margin-right: 10px;
+  .right {
+    display: flex;
+    .setting {
+      margin-right: 10px;
+    }
   }
 }
 </style>

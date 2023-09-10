@@ -9,6 +9,14 @@ const routes = [
     path: '/record',
     component: () => import('@/views/record/index.vue'),
   },
+  {
+    path: '/chanllenge',
+    component: () => import('@/views/chanllenge/index.vue'),
+  },
+  {
+    path: '/selection',
+    component: () => import('@/views/selection/index.vue'),
+  },
 ]
 
 const router = createRouter({

@@ -24,6 +24,12 @@ watchEffect(() => {
     case '/record':
       currentActiveIndex.value = 1
       break
+    case '/selection':
+      currentActiveIndex.value = 2
+      break
+    case '/chanllenge':
+      currentActiveIndex.value = 3
+      break
   }
 })
 
@@ -39,7 +45,12 @@ const siderBarItem = reactive<SiderBarItem[]>([
     icon: 'icon-park-outline:log',
   },
   {
-    path: '/',
+    path: '/selection',
+    name: 'Selection',
+    icon: 'game-icons:black-book',
+  },
+  {
+    path: '/chanllenge',
     name: 'Chanllenge',
     icon: 'material-symbols:trophy-outline',
   },
@@ -53,8 +64,13 @@ function fold() {
   siderRef.value.style.display = 'none'
 }
 
+function open() {
+  siderRef.value.style.display = 'block'
+}
+
 defineExpose({
   fold,
+  open,
 })
 </script>
 
