@@ -11,7 +11,7 @@ function showCn() {
 
 <template>
   <div class="word-card">
-    <div class="pre">
+    <div class="pre controlsIcon">
       <Icon class="icon" icon="bxs:left-arrow" />
     </div>
     <div class="word-detail">
@@ -40,13 +40,18 @@ function showCn() {
         </div>
       </div>
     </div>
-    <div class="next">
+    <div class="next controlsIcon">
       <Icon class="icon" icon="bxs:right-arrow" />
     </div>
   </div>
 </template>
 
 <style scoped lang="less">
+@keyframes run {
+  to {
+    opacity: 1;
+  }
+}
 .word-card {
   display: flex;
   justify-content: center;
@@ -54,6 +59,8 @@ function showCn() {
   width: 100%;
   height: 100%;
   user-select: none;
+  opacity: 0;
+  animation: run 0.4s ease-out forwards;
 
   .icon {
     font-size: 35px;
@@ -125,13 +132,30 @@ function showCn() {
         border-radius: 20px;
         color: #fff;
         cursor: pointer;
+        transition: all 0.1s ease-in-out;
 
         &.danger {
           background-color: #525252;
+
+          &:hover {
+            background-color: #525252d7;
+          }
+
+          &:active {
+            background-color: #525252ac;
+          }
         }
 
         &.primary {
           background-color: #8872ed;
+
+          &:hover {
+            background-color: #7360c8;
+          }
+
+          &:active {
+            background-color: #6351b3;
+          }
         }
       }
     }
@@ -140,5 +164,11 @@ function showCn() {
 
 .isShow {
   opacity: 1 !important;
+}
+
+.controlsIcon {
+  &:hover {
+    color: #656565 !important;
+  }
 }
 </style>

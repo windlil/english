@@ -40,6 +40,8 @@
   background-color: var(--background-color-record-card);
   border-radius: 20px;
   user-select: none;
+  transform: translateX(100%);
+  animation: run 0.5s ease-in-out forwards;
 
   .card-item {
     margin: 10px;
@@ -52,6 +54,12 @@
       margin-left: 4px;
       color: var(--color-record-span);
     }
+  }
+}
+
+@keyframes run {
+  to {
+    transform: translateX(0%);
   }
 }
 </style>
